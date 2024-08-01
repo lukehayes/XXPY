@@ -1,19 +1,15 @@
 import pyglet
 
+window = pyglet.window.Window()
 
-def tag(n):
-    def fooDecor(fn):
-        def wrapper(*args, **kwargs):
-            fn(*args, **kwargs)
-            print("Finished Wrapper")
-            print(f"Prefix Arg: {n}")
-        return wrapper
-    return fooDecor
+label = pyglet.text.Label('Loaded.',
+                          font_name='Times New Roman',
+                          font_size=36,
+                          x=window.width/2, y=window.height/2,
+                          anchor_x='center', anchor_y='center')
+@window.event
+def on_draw():
+    window.clear()
+    label.draw()
 
-@tag('Boobies')
-def hello(a):
-    print("Hello Function")
-
-
-hello(1)
-print("Done")
+pyglet.app.run()
